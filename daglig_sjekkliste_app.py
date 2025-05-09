@@ -14,7 +14,9 @@ from gspread_formatting import *
 
 # --- Google Sheets-oppsett ---
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("service-account-sjekkliste.json", scope)
+import json
+service_account_info = json.loads(st.secrets["service_account_json"])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scope)
 client = gspread.authorize(creds)
 spreadsheet = client.open("operation_sjekkliste_logg")
 
