@@ -55,7 +55,6 @@ st.markdown("""
     <div style="background-color: rgba(255, 255, 255, 0.95); padding: 20px 25px 30px 25px; border-radius: 16px;">
 """, unsafe_allow_html=True)
 
-st.markdown("###  ✅Daglig sjekkliste – Velg punkter nedenfor")
 
 norsk_dager = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
 today = datetime.now()
