@@ -73,16 +73,23 @@ sjekkliste = SJEKLISTE[valgt_skift]
 checkboxes = []
 
 for punkt in sjekkliste:
-    col1, col2 = st.columns([1, 8])
-    with col1:
-        checked = st.checkbox("", key=punkt)
-    with col2:
-        farge = "green" if checked else "red"
-        st.markdown(
-            f"<div style='color:{farge}; font-size:18px; padding-top:6px'>{punkt}</div>",
-            unsafe_allow_html=True
-        )
+    checked = st.checkbox(punkt, key=punkt)
+    farge = "green" if checked else "red"
     checkboxes.append((punkt, checked))
+
+    st.markdown(f"""
+        <style>
+        label[for=\"{punkt}\"] > div:first-child {{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }}
+        label[for=\"{punkt}\"] span {{
+            color: {farge};
+            font-size: 18px;
+        }}
+        </style>
+    """, unsafe_allow_html=True)
 
 st.markdown("---")
 kommentar = st.text_area("Kommentar og navn", placeholder="Skriv inn navn på skiftleder og eventuelle kommentarer her...")
@@ -160,6 +167,7 @@ if st.button("Lagre til Google Sheets", disabled=not kommentar.strip()):
 
 # --- Lukk innholdsboksen
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
