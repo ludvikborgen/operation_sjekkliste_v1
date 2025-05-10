@@ -48,7 +48,7 @@ SJEKLISTE = {
     ],
 }
 
-st.title("Operations Sjekkliste")
+st.title("✅ Ops Sjekkliste")
 
 norsk_dager = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
 today = datetime.now()
