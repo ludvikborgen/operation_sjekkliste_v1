@@ -49,18 +49,6 @@ SJEKLISTE = {
 }
 
 st.title("✅ Ops Sjekkliste")
-# --- Bakgrunnsbilde
-st.markdown("""
-    <style>
-    .stApp {
-        background-image: url("https://i.imgur.com/1HdIsUj.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 # --- Innholdsboks
 st.markdown("""
@@ -166,7 +154,7 @@ if st.button("Lagre til Google Sheets", disabled=not kommentar.strip()):
                 format_cell_range(sheet, f"B{i+1}", red_fmt)
 
     st.success(f"Sjekklisten for {valgt_skift} er lagret med kommentar.")
-st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
