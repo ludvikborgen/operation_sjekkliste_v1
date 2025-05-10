@@ -73,7 +73,7 @@ sjekkliste = SJEKLISTE[valgt_skift]
 checkboxes = []
 
 for punkt in sjekkliste:
-    col1, col2 = st.columns([0.1, 0.9])
+    col1, col2 = st.columns([1, 8])
     with col1:
         checked = st.checkbox("", key=punkt)
     with col2:
@@ -160,6 +160,7 @@ if st.button("Lagre til Google Sheets", disabled=not kommentar.strip()):
 
 # --- Lukk innholdsboksen
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
