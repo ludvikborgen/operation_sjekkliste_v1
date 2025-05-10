@@ -11,10 +11,10 @@ from datetime import date, datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from gspread_formatting import *
+import json
 
 # --- Google Sheets-oppsett ---
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-import json
 service_account_info = json.loads(st.secrets["service_account_json"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scope)
 client = gspread.authorize(creds)
@@ -55,7 +55,6 @@ st.markdown("""
     <div style="background-color: rgba(255, 255, 255, 0.95); padding: 20px 25px 30px 25px; border-radius: 16px;">
 """, unsafe_allow_html=True)
 
-
 norsk_dager = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
 today = datetime.now()
 sheet_name = today.strftime("%d.%m") + f" {norsk_dager[today.weekday()]}"
@@ -70,6 +69,9 @@ valgt_skift = st.radio("Velg skift", list(SJEKLISTE.keys()))
 st.markdown(f"## Sjekkliste – {valgt_skift}")
 st.markdown("<style>div.row-widget.stCheckbox{margin-bottom: 10px;} .stTextArea{margin-top: 40px;} .punkt-label{font-weight: bold;}</style>", unsafe_allow_html=True)
 
+sjekkliste = SJEKLISTE[valgt_skift]
+checkboxes = []
+
 for punkt in sjekkliste:
     col1, col2 = st.columns([0.1, 0.9])
     with col1:
@@ -80,6 +82,7 @@ for punkt in sjekkliste:
             f"<div style='color:{farge}; font-size:18px; padding-top:6px'>{punkt}</div>",
             unsafe_allow_html=True
         )
+    checkboxes.append((punkt, checked))
 
 st.markdown("---")
 kommentar = st.text_area("Kommentar og navn", placeholder="Skriv inn navn på skiftleder og eventuelle kommentarer her...")
@@ -155,6 +158,8 @@ if st.button("Lagre til Google Sheets", disabled=not kommentar.strip()):
 
     st.success(f"Sjekklisten for {valgt_skift} er lagret med kommentar.")
 
+# --- Lukk innholdsboksen
+st.markdown("</div>", unsafe_allow_html=True)
 
 
 
