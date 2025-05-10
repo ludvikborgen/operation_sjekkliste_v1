@@ -85,7 +85,7 @@ for punkt in sjekkliste:
             gap: 12px;
         }}
         label[for=\"{punkt}\"] span {{
-            color: {farge};
+            color: {farge} !important;
             font-size: 18px;
         }}
         </style>
