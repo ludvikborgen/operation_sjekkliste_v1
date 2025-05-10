@@ -70,15 +70,16 @@ valgt_skift = st.radio("Velg skift", list(SJEKLISTE.keys()))
 st.markdown(f"## Sjekkliste – {valgt_skift}")
 st.markdown("<style>div.row-widget.stCheckbox{margin-bottom: 10px;} .stTextArea{margin-top: 40px;} .punkt-label{font-weight: bold;}</style>", unsafe_allow_html=True)
 
-checkboxes = []
-for i, punkt in enumerate(SJEKLISTE[valgt_skift]):
-    cols = st.columns([0.1, 0.9])
-    with cols[0]:
-        checked = st.checkbox("", key=f"{valgt_skift}_{i}")
-    with cols[1]:
+for punkt in sjekkliste:
+    col1, col2 = st.columns([0.1, 0.9])
+    with col1:
+        checked = st.checkbox("", key=punkt)
+    with col2:
         farge = "green" if checked else "red"
-        st.markdown(f"<span style='color:{farge}'>{punkt}</span>", unsafe_allow_html=True)
-    checkboxes.append((punkt, checked))
+        st.markdown(
+            f"<div style='color:{farge}; font-size:18px; padding-top:6px'>{punkt}</div>",
+            unsafe_allow_html=True
+        )
 
 st.markdown("---")
 kommentar = st.text_area("Kommentar og navn", placeholder="Skriv inn navn på skiftleder og eventuelle kommentarer her...")
