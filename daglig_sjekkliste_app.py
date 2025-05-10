@@ -49,6 +49,24 @@ SJEKLISTE = {
 }
 
 st.title("✅ Ops Sjekkliste")
+st.markdown("""
+    <style>
+    .stApp {
+        background-image: url("https://i.imgur.com/1HdIsUj.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    @media (max-width: 768px) {
+        .stApp {
+            background-position: top;
+            background-size: cover;
+        }
+    }
+    </style>
+""", unsafe_allow_html=True)
 
 norsk_dager = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
 today = datetime.now()
