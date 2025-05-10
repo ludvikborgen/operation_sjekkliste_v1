@@ -49,6 +49,7 @@ SJEKLISTE = {
 }
 
 st.title("✅ Ops Sjekkliste")
+# --- Bakgrunnsbilde
 st.markdown("""
     <style>
     .stApp {
@@ -58,15 +59,15 @@ st.markdown("""
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
-
-    @media (max-width: 768px) {
-        .stApp {
-            background-position: top;
-            background-size: cover;
-        }
-    }
     </style>
 """, unsafe_allow_html=True)
+
+# --- Innholdsboks
+st.markdown("""
+    <div style="background-color: rgba(255, 255, 255, 0.95); padding: 20px 25px 30px 25px; border-radius: 16px;">
+""", unsafe_allow_html=True)
+
+st.markdown("###  ✅Daglig sjekkliste – Velg punkter nedenfor")
 
 norsk_dager = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"]
 today = datetime.now()
