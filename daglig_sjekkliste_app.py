@@ -72,8 +72,28 @@ st.markdown("<style>div.row-widget.stCheckbox{margin-bottom: 10px;} .stTextArea{
 sjekkliste = SJEKLISTE[valgt_skift]
 checkboxes = []
 
+# --- Hent eksisterende status fra Google Sheets hvis tilgjengelig
+existing_data = sheet.get_all_values()
+start_index = None
+status_dict = {}
+
+for i, row in enumerate(existing_data):
+    if row and row[0] == valgt_skift:
+        start_index = i
+        break
+
+if start_index is not None:
+    for row in existing_data[start_index+2:]:
+        if not row or row[0] == "" or row[0].startswith("Kommentar"):
+            break
+        punkt = row[0]
+        status = row[1] if len(row) > 1 else "Ikke utført"
+        status_dict[punkt] = status
+
+# --- Vis sjekkbokser basert på tidligere status
 for punkt in sjekkliste:
-    checked = st.checkbox(punkt, key=punkt)
+    default_checked = status_dict.get(punkt, "Ikke utført") == "Utført"
+    checked = st.checkbox(punkt, key=punkt, value=default_checked)
     farge = "green" if checked else "red"
     checkboxes.append((punkt, checked))
 
@@ -167,6 +187,7 @@ if st.button("Lagre til Google Sheets", disabled=not kommentar.strip()):
 
 # --- Lukk innholdsboksen
 st.markdown("</div>", unsafe_allow_html=True)
+
 
 
 
