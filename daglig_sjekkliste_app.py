@@ -166,7 +166,7 @@ if st.button("Lagre til Google Sheets", disabled=not kommentar.strip()):
                 format_cell_range(sheet, f"B{i+1}", red_fmt)
 
     st.success(f"Sjekklisten for {valgt_skift} er lagret med kommentar.")
-
+st.markdown("</div>", unsafe_allow_html=True)
 
 
 
